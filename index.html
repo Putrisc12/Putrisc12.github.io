@@ -1,0 +1,178 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Latihan JSON, Bootsrap !</title>
+
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/carousel/"> -->
+
+    <!-- Bootstrap core CSS
+    bootstrap.min.css -->
+<link href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .nilai:hover{
+        background: grey;
+        color: black;
+        width: 200px;
+        height: 100px;
+        display: inline-block;
+        text-align: left;
+        padding: 10px;
+
+       }
+       .nilai{
+        background: white;
+        color: white;
+       }
+     .diskon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: white;
+      font-size: 25px;
+     padding-top: 15px;
+      display: block;
+      line-height: 20px;
+      background: red;
+      transition: all 300ms ease-in-out 0s;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+
+    }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="assets/css/carousel.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
+    <a class="navbar-brand" href="#">Putri Olshop!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-left">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-right">
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+<center>
+<div class="card" id="list" style="width: 100%; display: inline-block;"></div>
+<div id="ranting"></div>
+</center>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2017-2019 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+<script src="assets/libs/jquery/jquery-3.4.1.min.js"></script>
+
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+        url : 'myjson.json',
+        type : 'POST',
+        dataType : "json",
+        success: function handledata(data){
+          var strjson = JSON.stringify(data);
+      for (var i = 0 ; i < data.data.length ; i++){
+          $('#list').append("<div class= 'card mb-3' style='width: 200px; display: inline-block; margin: 15px; '>"
+            +"<div><img src='"+ data.data[i].img+"'class='card-img-top' alt='...' style= 'width : 200px'; height :'300px';><span class='diskon'>"+data.data[i].diskon+"</span></div><div class='card-body'>" 
+          +"<h5 class='card-title' font-size='7'><acronym title='"+data.data[i].Nama+"'>" 
+          + data.data[i].Nama+"</acronym></h5>"
+          + "<p class='card-text' style='color:red;'><del style='color:grey;'>"+data.data[i].hrg+"</del><br><b>"+data.data[i].Harga+"</b></p><img src='"+data.data[i].rating+"' style='width:100px; height:30px; float:left;'>171</div><div class='nilai'>"+data.data[i].toko+"<p>"+data.data[i].alamat+"</div>");
+
+        }
+      }
+    });
+  });
+        
+</script>
+</body>
+</html>
